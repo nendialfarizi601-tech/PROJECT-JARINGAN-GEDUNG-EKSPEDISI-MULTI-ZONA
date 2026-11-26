@@ -1,1 +1,35 @@
+enable
+configure terminal
 
+hostname Router-Gedung
+
+ Buat antarmuka untuk VLAN 10 (Zona A)
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+ Buat antarmuka untuk VLAN 20 (Zona B)
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+ Antarmuka ke Switch Core
+interface GigabitEthernet0/0
+ no shutdown
+
+DHCP Server untuk Zona A
+ip dhcp excluded-address 192.168.10.1
+ip dhcp pool ZONA-A
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 8.8.8.8
+
+DHCP Server untuk Zona B
+ip dhcp excluded-address 192.168.20.1
+ip dhcp pool ZONA-B
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+ dns-server 8.8.8.8
+
+exit
+write memory
