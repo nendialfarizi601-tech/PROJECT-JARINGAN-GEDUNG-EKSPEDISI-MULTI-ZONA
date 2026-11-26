@@ -1,1 +1,31 @@
+SW-B
 
+enable
+configure terminal
+
+hostname SW-B
+
+ Buat VLAN
+vlan 20
+ name ZONA-B
+exit
+
+ Port ke Switch Core
+interface Fa0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 20
+ no shutdown
+
+ Port untuk PC
+interface Fa0/1
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+
+interface Fa0/2
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+
+exit
+write memory
