@@ -1,1 +1,31 @@
+SW-A
 
+enable
+configure terminal
+
+hostname SW-A
+
+ Buat VLAN
+vlan 10
+ name ZONA-A
+exit
+
+ Port ke Switch Core
+interface Fa0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 10
+ no shutdown
+
+ Port untuk PC
+interface Fa0/1
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+
+interface Fa0/2
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+
+exit
+write memory
